@@ -17,6 +17,7 @@ namespace FieldKit
         public bool readOnly;
         public string labelOverride;
         public float pollInterval = 0.1f;
+        public int incrementStep = 1;
 
         private float _timer;
 
@@ -102,6 +103,25 @@ namespace FieldKit
                 result.Append(input[i]);
             }
             return result.ToString();
+        }
+
+        public void Increment()
+        {
+            if (readOnly) return;
+            var valObj = GetValue();
+            int v = valObj is int i ? i : 0;
+            v += incrementStep;
+            SetValue(v);
+            RefreshUI(force: true);
+        }
+        public void Decrement()
+        {
+            if (readOnly) return;
+            var valObj = GetValue();
+            int v = valObj is int i ? i : 0;
+            v -= incrementStep;
+            SetValue(v);
+            RefreshUI(force: true);
         }
     }
 }
