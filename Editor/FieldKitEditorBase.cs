@@ -109,6 +109,17 @@ namespace FieldKit
             EditorGUILayout.Space(8);
             DrawRemainingProperties();
             serializedObject.ApplyModifiedProperties();
+
+            // Delete saved value button
+            if (tool.saveToPlayerPrefs && tool.HasValidSelection())
+            {
+                EditorGUILayout.Space();
+                if (GUILayout.Button("Delete Saved Value"))
+                {
+                    PlayerPrefs.DeleteKey(tool.GetPlayerPrefsKey());
+                    PlayerPrefs.Save();
+                }
+            }
         }
 
         protected virtual void DrawDerivedExtras() { }
