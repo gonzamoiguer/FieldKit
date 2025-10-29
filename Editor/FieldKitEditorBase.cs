@@ -111,7 +111,7 @@ namespace FieldKit
             serializedObject.ApplyModifiedProperties();
 
             // Delete saved value button
-            if (tool.saveToPlayerPrefs && tool.HasValidSelection())
+            if (tool.HasValidSelection())
             {
                 EditorGUILayout.Space();
                 if (GUILayout.Button("Delete Saved Value"))
